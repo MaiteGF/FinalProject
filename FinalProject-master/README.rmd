@@ -1,0 +1,55 @@
+# FinalProject---
+title: "Final Project"
+output: html_document
+author: "Group Member Names"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment="")
+library(tidyverse)
+#include other packages needed here
+```
+
+```{r, eval=FALSE, include=FALSE}
+#include data cleaning code here, with comments on what each step is doing the indicators above eval=FALSE and include=FALSE will stop the code from running again when you knit the document while still keeping the code in the document
+#use write_csv() to write your tidy data into a new csv file
+```
+
+```{r}
+library (readr)
+
+urlfile="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-12-18/allCetaceanData.csv"
+
+mydata<-read_csv(url(urlfile))
+
+library(ggplot2)
+
+#use read_csv() to import your new tidy data include any variable specifications here as needed
+```
+
+## Introduction
+Description of data and problem(s) you are solving.  Include data source(s) here, either through citation or link to webpage.
+
+
+## Graphic 1
+I wanted to see how Bottlenose dolphins are obtained an how that has changed over the time frame that we have data for. 
+This graphic shows the acquisition type on the y axis and the orginDate on the x axis. Each individual Bottlenose is represented by a point.
+We can see that captureing was the primary method from the 1950s to about 1990, where it came to an abrupt stop. Many are rescued and born into captivity starting in the 1970s, but being born is definitely the primary way that Bottlenose dolphins end up in captivity from the 1970s on. 
+```{r}
+Plot <- select(mydata, species, acquisition, originDate) %>%
+  filter(species == "Bottlenose") %>%
+  ggplot() +
+  geom_point(mapping = aes(x = originDate, y = acquisition))
+print(Plot + ggtitle("Acquisition of Bottlenose Dolphins over Time"))
+
+
+```
+
+## Graphic 2 - if two people in group
+Provide a brief description of your goal with your created graphic and what it demonstrates
+```{r}
+#include code for any data manipulation and variable creation used to create teh graphic as well as the code for the graph creation - be sure to comment all code with description of steps being completed with each line of code
+```
+
+
+
